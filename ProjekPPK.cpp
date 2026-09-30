@@ -29,30 +29,22 @@ bool statusBuku[MAX_BUKU] = {
     true, true, true, true, true
 };
 
-// FUNCTION SHOW BOOKS
-
-void showBooks()
-{
+void showBooks(){
     cout << "\n========== DAFTAR BUKU ==========\n";
 
-    if (jumlahBuku == 0)
-    {
+    if (jumlahBuku == 0){
         cout << "Belum ada buku di perpustakaan.\n";
         return;
     }
 
-    for (int i = 0; i < jumlahBuku; i++)
-    {
+    for (int i = 0; i < jumlahBuku; i++){
         cout << "\nID       : " << idBuku[i];
         cout << "\nJudul    : " << judulBuku[i];
         cout << "\nPenulis  : " << penulisBuku[i];
 
-        if (statusBuku[i])
-        {
+        if (statusBuku[i]){
             cout << "\nStatus   : Tersedia";
-        }
-        else
-        {
+        } else {
             cout << "\nStatus   : Dipinjam";
         }
 
@@ -60,17 +52,11 @@ void showBooks()
     }
 }
 
-// FUNCTION OVERLOADING
-// SEARCH BY ID
-
-void searchBook(int id)
-{
+void searchBook(int id){
     bool ditemukan = false;
 
-    for (int i = 0; i < jumlahBuku; i++)
-    {
-        if (idBuku[i] != id)
-        {
+    for (int i = 0; i < jumlahBuku; i++){
+        if (idBuku[i] != id){
             continue;
         }
 
@@ -79,12 +65,9 @@ void searchBook(int id)
         cout << "Judul    : " << judulBuku[i] << endl;
         cout << "Penulis  : " << penulisBuku[i] << endl;
 
-        if (statusBuku[i])
-        {
+        if (statusBuku[i]) {
             cout << "Status   : Tersedia\n";
-        }
-        else
-        {
+        } else {
             cout << "Status   : Dipinjam\n";
         }
 
@@ -92,25 +75,16 @@ void searchBook(int id)
         break;
     }
 
-    if (!ditemukan)
-    {
+    if (!ditemukan) {
         cout << "\nBuku dengan ID tersebut tidak ditemukan.\n";
     }
 }
 
-
-// FUNCTION OVERLOADING
-// SEARCH BY JUDUL
-
-
-void searchBook(string judul)
-{
+void searchBook(string judul){
     bool ditemukan = false;
 
-    for (int i = 0; i < jumlahBuku; i++)
-    {
-        if (judulBuku[i] != judul)
-        {
+    for (int i = 0; i < jumlahBuku; i++){
+        if (judulBuku[i] != judul) {
             continue;
         }
 
@@ -119,12 +93,9 @@ void searchBook(string judul)
         cout << "Judul    : " << judulBuku[i] << endl;
         cout << "Penulis  : " << penulisBuku[i] << endl;
 
-        if (statusBuku[i])
-        {
+        if (statusBuku[i]){
             cout << "Status   : Tersedia\n";
-        }
-        else
-        {
+        }else{
             cout << "Status   : Dipinjam\n";
         }
 
@@ -132,19 +103,13 @@ void searchBook(string judul)
         break;
     }
 
-    if (!ditemukan)
-    {
+    if (!ditemukan){
         cout << "\nBuku dengan judul tersebut tidak ditemukan.\n";
     }
 }
 
-
-// FUNCTION ADD BOOK
-
-void addBook()
-{
-    if (jumlahBuku >= MAX_BUKU)
-    {
+void addBook(){
+    if (jumlahBuku >= MAX_BUKU){
         cout << "\nKapasitas perpustakaan sudah penuh.\n";
         return;
     }
@@ -163,71 +128,50 @@ void addBook()
     getline(cin, penulisBuku[jumlahBuku]);
 
     statusBuku[jumlahBuku] = true;
-
     jumlahBuku++;
-
     cout << "\nBuku berhasil ditambahkan!\n";
 }
 
-// FUNCTION BORROW BOOK
-
-void borrowBook()
-{
+void borrowBook(){
     int id;
 
     cout << "\nMasukkan ID buku yang ingin dipinjam: ";
     cin >> id;
 
-    for (int i = 0; i < jumlahBuku; i++)
-    {
-        if (idBuku[i] != id)
-        {
+    for (int i = 0; i < jumlahBuku; i++){
+        if (idBuku[i] != id) {
             continue;
         }
-
-        if (statusBuku[i])
-        {
+        if (statusBuku[i]){
             statusBuku[i] = false;
-
             cout << "\nBuku \"" << judulBuku[i]
                  << "\" berhasil dipinjam.\n";
-        }
-        else
-        {
+        } else {
             cout << "\nBuku tersebut sedang dipinjam.\n";
         }
-
         return;
     }
 
     cout << "\nBuku tidak ditemukan.\n";
 }
 
-// FUNCTION RETURN BOOK
-
-void returnBook()
-{
+void returnBook(){
     int id;
 
     cout << "\nMasukkan ID buku yang ingin dikembalikan: ";
     cin >> id;
 
-    for (int i = 0; i < jumlahBuku; i++)
-    {
-        if (idBuku[i] != id)
-        {
+    for (int i = 0; i < jumlahBuku; i++){
+        if (idBuku[i] != id){
             continue;
         }
 
-        if (!statusBuku[i])
-        {
+        if (!statusBuku[i]){
             statusBuku[i] = true;
 
             cout << "\nBuku \"" << judulBuku[i]
                  << "\" berhasil dikembalikan.\n";
-        }
-        else
-        {
+        }else{
             cout << "\nBuku tersebut belum dipinjam.\n";
         }
 
@@ -236,8 +180,6 @@ void returnBook()
 
     cout << "\nBuku tidak ditemukan.\n";
 }
-
-// FUNCTION REMOVE BOOK
 
 void removeBook()
 {
@@ -253,17 +195,14 @@ void removeBook()
         {
             continue;
         }
-
         // Geser data buku setelahnya ke kiri
-        for (int j = i; j < jumlahBuku - 1; j++)
-        {
+        for (int j = i; j < jumlahBuku - 1; j++){
             idBuku[j] = idBuku[j + 1];
             judulBuku[j] = judulBuku[j + 1];
             penulisBuku[j] = penulisBuku[j + 1];
             statusBuku[j] = statusBuku[j + 1];
         }
 
-        // Kurangi jumlah buku
         jumlahBuku--;
 
         ditemukan = true;
@@ -273,16 +212,12 @@ void removeBook()
         break;
     }
 
-    if (!ditemukan)
-    {
+    if (!ditemukan){
         cout << "\nBuku tidak ditemukan.\n";
     }
 }
 
-// FUNCTION SEARCH MENU
-
-void searchMenu()
-{
+void searchMenu(){
     int pilihan;
 
     cout << "\n========== SEARCH BOOK ==========\n";
@@ -291,10 +226,8 @@ void searchMenu()
     cout << "Pilih: ";
     cin >> pilihan;
 
-    switch (pilihan)
-    {
-        case 1:
-        {
+    switch (pilihan){
+        case 1:{
             int id;
 
             cout << "Masukkan ID buku: ";
@@ -305,8 +238,7 @@ void searchMenu()
             break;
         }
 
-        case 2:
-        {
+        case 2:{
             string judul;
 
             cin.ignore();
@@ -324,8 +256,6 @@ void searchMenu()
             break;
     }
 }
-
-// MAIN PROGRAM
 
 int main()
 {
@@ -352,8 +282,7 @@ int main()
         cout << "Pilih menu: ";
         cin >> pilihan;
 
-        switch (pilihan)
-        {
+        switch (pilihan) {
             case 1:
                 showBooks();
                 break;
@@ -387,8 +316,7 @@ int main()
                 continue;
         }
 
-        if (pilihan == 7)
-        {
+        if (pilihan == 7) {
             break;
         }
     }
