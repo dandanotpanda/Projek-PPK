@@ -108,30 +108,6 @@ void searchBook(string judul){
     }
 }
 
-void addBook(){
-    if (jumlahBuku >= MAX_BUKU){
-        cout << "\nKapasitas perpustakaan sudah penuh.\n";
-        return;
-    }
-
-    cout << "\n========== TAMBAH BUKU ==========\n";
-
-    cout << "Masukkan ID buku: ";
-    cin >> idBuku[jumlahBuku];
-
-    cin.ignore();
-
-    cout << "Masukkan judul buku: ";
-    getline(cin, judulBuku[jumlahBuku]);
-
-    cout << "Masukkan nama penulis: ";
-    getline(cin, penulisBuku[jumlahBuku]);
-
-    statusBuku[jumlahBuku] = true;
-    jumlahBuku++;
-    cout << "\nBuku berhasil ditambahkan!\n";
-}
-
 void borrowBook(){
     int id;
 
@@ -179,6 +155,29 @@ void returnBook(){
     }
 
     cout << "\nBuku tidak ditemukan.\n";
+}
+void addBook(){
+    if (jumlahBuku >= MAX_BUKU){
+        cout << "\nKapasitas perpustakaan sudah penuh.\n";
+        return;
+    }
+
+    cout << "\n========== TAMBAH BUKU ==========\n";
+
+    cout << "Masukkan ID buku: ";
+    cin >> idBuku[jumlahBuku];
+
+    cin.ignore();
+
+    cout << "Masukkan judul buku: ";
+    getline(cin, judulBuku[jumlahBuku]);
+
+    cout << "Masukkan nama penulis: ";
+    getline(cin, penulisBuku[jumlahBuku]);
+
+    statusBuku[jumlahBuku] = true;
+    jumlahBuku++;
+    cout << "\nBuku berhasil ditambahkan!\n";
 }
 
 void removeBook()
@@ -269,9 +268,9 @@ int main()
 
         cout << "1. Show Books\n";
         cout << "2. Search Book\n";
-        cout << "3. Add Book\n";
-        cout << "4. Borrow Book\n";
-        cout << "5. Return Book\n";
+        cout << "3. Borrow Book\n";
+        cout << "4. Return Book\n";
+        cout << "5. Add Book\n";
         cout << "6. Remove Book\n";
         cout << "7. Exit\n";
 
@@ -292,15 +291,15 @@ int main()
                 break;
 
             case 3:
-                addBook();
+               borrowBook();
                 break;
 
             case 4:
-                borrowBook();
+                returnBook();
                 break;
 
             case 5:
-                returnBook();
+                 addBook();
                 break;
 
             case 6:
@@ -316,7 +315,8 @@ int main()
                 continue;
         }
 
-        if (pilihan == 7) {
+        if (pilihan == 7)
+ {
             break;
         }
     }
